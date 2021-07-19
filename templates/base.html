@@ -12,11 +12,12 @@
         <nav>
             <a href="{% url 'home' %}">Home</a>
             <a href="{% url 'about' %}">About Us</a>
+            <a href="{% url 'tool_info' %}">Tool Info</a>
             <a href="{% url 'search' %}">Search</a>
         </nav>
     </header>
     {% block content %}
     <p>Content unique to template goes here.</p>
-    {% endblock content %}  
+    {% endblock content %}
 </body>
 </html>
