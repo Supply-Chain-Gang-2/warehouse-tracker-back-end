@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.postgres.fields import HStoreField, ArrayField
 from django.db import models
 
 
@@ -8,18 +9,18 @@ class Warehouse(models.Model):
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True
     )
     description = models.TextField(default="", null=True, blank=True)
-    # length = ;
-    # width = ;
-    # height = ;
-    # area = ;
-    # volume = ;
-    # lane_width_size = ;
-    # shelves  = ;# <-----------------------gotta figure this out
-    # x_grid_space = ;
-    # y_grid_space = ;
-    # z_grid_space = ;
-    # leftover_x_space = ;
-    # grid = ; # <--------------------------gotta figure this out
+    length = models.IntegerField()
+    width = models.IntegerField()
+    height = models.IntegerField()
+    area = models.IntegerField()
+    volume = models.IntegerField()
+    lane_width_size = models.IntegerField()
+    shelves  = HStoreField()
+    x_grid_space = models.IntegerField()
+    y_grid_space = models.IntegerField()
+    z_grid_space = models.IntegerField()
+    leftover_x_space = models.IntegerField()
+    grid = ArrayField(ArrayField(ArrayField(models.CharField(max_length=256, blank=True))))
     
 
     def __str__(self):
