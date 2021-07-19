@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 
-class Thing(models.Model):
+class Warehouse(models.Model):
     name = models.CharField(max_length=256)
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True
