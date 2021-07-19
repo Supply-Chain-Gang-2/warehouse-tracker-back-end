@@ -4,29 +4,29 @@ from django.db import models
 
 
 class Warehouse(models.Model):
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256,default='billy')
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True
     )
     description = models.TextField(default="", null=True, blank=True)
-    length = models.IntegerField()
-    width = models.IntegerField()
-    height = models.IntegerField()
-    area = models.IntegerField()
-    volume = models.IntegerField()
-    lane_width_size = models.IntegerField()
-    shelves  = HStoreField()
-    x_grid_space = models.IntegerField()
-    y_grid_space = models.IntegerField()
-    z_grid_space = models.IntegerField()
-    leftover_x_space = models.IntegerField()
+    length = models.IntegerField(default=0)
+    width = models.IntegerField(default=0)
+    height = models.IntegerField(default=0)
+    area = models.IntegerField(default=0)
+    volume = models.IntegerField(default=0)
+    lane_width_size = models.IntegerField(default=0)
+    # shelves  = HStoreField()
+    x_grid_space = models.IntegerField(default=0)
+    y_grid_space = models.IntegerField(default=0)
+    z_grid_space = models.IntegerField(default=0)
+    leftover_x_space = models.IntegerField(default=0)
     grid = ArrayField(
                 ArrayField(
                     ArrayField(
-                        models.CharField(max_length=256, blank=True)
-                        )
+                        models.CharField(max_length=256,default='')
                     )
                 )
+    )
     
 
     def __str__(self):
