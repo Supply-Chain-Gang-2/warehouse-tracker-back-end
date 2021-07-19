@@ -20,7 +20,13 @@ class Warehouse(models.Model):
     y_grid_space = models.IntegerField()
     z_grid_space = models.IntegerField()
     leftover_x_space = models.IntegerField()
-    grid = ArrayField(ArrayField(ArrayField(models.CharField(max_length=256, blank=True))))
+    grid = ArrayField(
+                ArrayField(
+                    ArrayField(
+                        models.CharField(max_length=256, blank=True)
+                        )
+                    )
+                )
     
 
     def __str__(self):
