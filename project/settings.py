@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     "corsheaders",
     # local
     "accounts",
-    "things",
+    "warehouses",
+    "tracker",
 ]
 
 MIDDLEWARE = [
