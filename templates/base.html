@@ -20,4 +20,10 @@
     <p>Content unique to template goes here.</p>
     {% endblock content %}
 </body>
+<footer>
+  <p class="text-xs">&copy 2021</p>
+  <p><a href="{% url 'home' %}">Home</a></p>
+  <p><a href="{% url 'about' %}">About Us</a></p>
+  <p><a href="{% url 'tool_info' %}">Tool Info</a></p>
+</footer>
 </html>
