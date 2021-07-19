@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     # local
     "accounts",
     "warehouses",
+    "tracker",
 ]
 
 MIDDLEWARE = [
