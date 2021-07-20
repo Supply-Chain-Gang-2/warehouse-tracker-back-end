@@ -54,7 +54,7 @@ module.exports = {
     theme: {
         extend: {
             backgroundImage: theme => ({
-                'warehouse-bg': "url('/static/warehouse-background.jpg')",
+                'warehouse-bg': "url('./static/warehouse-background.jpg')",
             })
         },
     },
