@@ -1,52 +1,79 @@
 from django.contrib.auth import get_user_model
+from django.contrib.postgres.fields import HStoreField, ArrayField
 from django.db import models
+from warehouse_utilities.warehouse_constructor import Shelves
 
 
 class Warehouse(models.Model):
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256,default='Big Warehouse')
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True
     )
     description = models.TextField(default="", null=True, blank=True)
-    # length = ;
-    # width = ;
-    # height = ;
-    # area = ;
-    # volume = ;
-    # lane_width_size = ;
-    # shelves  = ;# <-----------------------gotta figure this out
-    # x_grid_space = ;
-    # y_grid_space = ;
-    # z_grid_space = ;
-    # leftover_x_space = ;
-    # grid = ; # <--------------------------gotta figure this out
+    
+    length = models.IntegerField(default=600)
+    width = models.IntegerField(default=600)
+    height = models.IntegerField(default=120)
+    lane_width_size = models.IntegerField(default=48)
+    shelf_length = models.IntegerField(default=120)
+    shelf_depth = models.IntegerField(default=48)
+    shelf_height = models.IntegerField(default=60)
+    
+    @property
+    def area(self):
+        return self.length * self.width
+
+    @property
+    def volume(self):
+        return self.area * self.height
+    
+    @property
+    def x_grid_space(self):
+        return (self.width - self.lane_width_size)//(self.shelf_length)
+    
+    @property
+    def y_grid_space(self):
+        return (self.length - self.shelf_depth - self.lane_width_size)//(self.shelf_depth + self.lane_width_size)
+    
+    @property
+    def z_grid_space(self):
+        return (self.height//self.shelf_height)
+    
+    @property
+    def leftover_x_space(self):
+        return self.width-(self.x_grid_space * self.shelf_length)
+    
+    
+    
+    # @property
+    # def shelves(self):
+    #     num_shelves_back_wall = (self.width//self.shelf_length)*(self.height//self.shelf_height)
+    #     return x_shelves,y_shelves,z_shelves,num_shelves_back_wall
+    
+    # grid = ArrayField(
+    #             ArrayField(
+    #                 ArrayField(
+    #                     models.CharField(max_length=256,default=''),
+    #                 ),
+    #             ),
+    #             default=list,
+    # )
+    
     
 
     def __str__(self):
         return self.name
     
-    
-    
-    
-    
-# self.length = length*12
-# self.width = width*12
-# self.height = height*12
-# self.area = length*width
-# self.volume = self.area*height
-# self.lane_width_size = 48
-# self.shelves = Shelves()
-# self.x_grid_space = 0
-# self.y_grid_space = 0
-# self.z_grid_space = 0
-# self.leftover_x_space = 0
-# self.grid = None
+    # class TestModel(models.Model):
+    # x = models.CharField(max_length=16)
+    # z = models.CharField(max_length=16)
+    # computed = models.CharField(max_length=32, editable=False)
 
-# class Shelves:
-# """this class holds the information for one individual shelf. the warehouse class assumes all of your shelves are the same size.
-# """
-# def __init__(self, length=10,depth=4,height=5):
-# self.length = length*12
-# self.depth = depth*12
-# self.height = height*12
-# self.footprint = self.length*self.depth
+    # def save(self, *args, **kwargs):
+    #     self.computed = self.x + self.y
+    #     super(TestModel, self).save(*args, **kwargs)
+    
+    
+    
+    
+    
