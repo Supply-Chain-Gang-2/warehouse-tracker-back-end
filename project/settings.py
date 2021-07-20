@@ -17,7 +17,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env(
-    DEBUG=(bool, False),
+    DEBUG=(bool, True),
     ENVIRONMENT=(str, "PRODUCTION"),
     ALLOW_ALL_ORIGINS=(bool, False),
     ALLOWED_HOSTS=(list, []),
@@ -82,7 +82,7 @@ ROOT_URLCONF = "project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / 'theme' / 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -151,7 +151,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
