@@ -11,13 +11,15 @@ class Warehouse(models.Model):
     )
     description = models.TextField(default="", null=True, blank=True)
     
-    length = models.IntegerField(default=600)
-    width = models.IntegerField(default=600)
-    height = models.IntegerField(default=120)
-    lane_width_size = models.IntegerField(default=48)
-    shelf_length = models.IntegerField(default=120)
-    shelf_depth = models.IntegerField(default=48)
-    shelf_height = models.IntegerField(default=60)
+    measurement_unit = models.CharField(max_length=15, choices=(('feet','Feet'), ('inches', 'Inches')), default='feet')
+    length = models.IntegerField(default=50)
+    width = models.IntegerField(default=50)
+    height = models.IntegerField(default=10)
+    lane_width_size = models.IntegerField(default=4)
+    shelf_length = models.IntegerField(default=10)
+    shelf_depth = models.IntegerField(default=4)
+    shelf_height = models.IntegerField(default=5)
+    
     
     @property
     def area(self):
