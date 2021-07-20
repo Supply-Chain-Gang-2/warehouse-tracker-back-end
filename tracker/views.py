@@ -9,4 +9,6 @@ class AboutUsPageView(TemplateView):
 
 class SearchPage(TemplateView):
     template_name = 'search.html'
-    
+
+class ToolInfoPageView(TemplateView):
+    template_name = 'tool_info.html'
