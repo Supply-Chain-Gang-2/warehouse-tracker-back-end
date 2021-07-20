@@ -1,6 +1,11 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
-<p>Content unique to my warehouses goes here.</p>
+
+  {% for warehouse in queryset %}
+    <a href="{% url 'warehouse_list' warehouse.pk %}">{{ warehouse.name }}</a>
+  {% endfor %}
+
 {% endblock content %}
+
