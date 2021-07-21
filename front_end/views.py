@@ -1,14 +1,8 @@
 from django.views.generic import ListView, CreateView, DeleteView, UpdateView, DetailView
 from warehouses.models import Warehouse
-from warehouses.permissions import IsOwnerOrReadOnly
-from warehouses.serializers import WarehouseSerializer
+from django.urls import reverse_lazy
 
 class WarehouseListView(ListView):
-    # def get_queryset(self):
-    #     user = self.request.user
-    #     queryset = Warehouse.objects.filter(owner=user)
-    #     return queryset
-    serializer_class = WarehouseSerializer
     template_name = "my_warehouses.html"
     model = Warehouse
 
@@ -17,19 +11,17 @@ class WarehouseDetail(DetailView):
     model = Warehouse
 
 class WarehouseCreate(CreateView):
-    permission_classes = (IsOwnerOrReadOnly,)
-    serializer_class = WarehouseSerializer
-    # template_name = "my_warehouses.html"
+    template_name = "warehouse_create_view.html"
     model = Warehouse
+    fields = ["name","owner","description"]
 
 class WarehouseDelete(DeleteView):
-    permission_classes = (IsOwnerOrReadOnly,)
-    serializer_class = WarehouseSerializer
-    # template_name = "my_warehouses.html"
+    template_name = "warehouse_delete_view.html"
     model = Warehouse
+    success_url = reverse_lazy("my_warehouses")
 
 class WarehouseUpdate(UpdateView):
-    permission_classes = (IsOwnerOrReadOnly,)
-    serializer_class = WarehouseSerializer
-    # template_name = "my_warehouses.html"
+    template_name = "warehouse_update_view.html"
     model = Warehouse
+    fields = ["name","owner","description"]
+
