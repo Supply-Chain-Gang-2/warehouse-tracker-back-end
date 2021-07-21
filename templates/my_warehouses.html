@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <p>Warehouse here!!!!</p>
+  <p>{{ warehouse.name }}</p>
+
+  {% for warehouse in object_list %}
+    <p>HEY!!!</p>
+    <a href="{% url 'warehouse_list' warehouse.pk %}">{{ warehouse.name }}</a>
+  {% endfor %}
+
+{% endblock content %}
+

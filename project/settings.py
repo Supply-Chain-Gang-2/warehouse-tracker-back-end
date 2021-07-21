@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "tracker",
     "tailwind",
     "theme",
+    "front_end",
 ]
 
 MIDDLEWARE = [

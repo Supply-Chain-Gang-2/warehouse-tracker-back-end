@@ -3,10 +3,13 @@
 
 {% block content %}
 <p>Warehouse here!!!!</p>
-  {% for warehouse in object_list %}
-    <p>HEY!!!</p>
-    <!-- <a href="{% url 'warehouse_list' warehouse.pk %}">{{ warehouse.name }}</a> -->
-  {% endfor %}
+{{ object_list }}
+<p>{{ warehouse.name }}</p>
+<p>UNDER OBJECT LIST</p>
+{% for warehouse in object_list %}
+  <p>HEY!!!</p>
+  <a href="{% url 'warehouse_list' warehouse.pk %}">{{ warehouse.name }}</a>
+{% endfor %}
 
 {% endblock content %}
 
