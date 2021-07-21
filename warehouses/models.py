@@ -1,24 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import HStoreField, ArrayField
 from django.db import models
+from django.db.models.fields.related import ForeignKey
 from warehouse_utilities.warehouse_constructor import Shelves
 from django.urls import reverse
 
-
-# class Inventory(models.Model):
-#     item = models.CharField(max_length=256, default="")
-#     month = models.CharField(max_length=3, default="")
-#     sales = models.IntegerField(default=0)
-#     inventory = models.IntegerField(default=0)
-#     orders = models.IntegerField(default=0)
-#     order_size = models.IntegerField(default=0)
-#     turnover = models.FloatField(default=0.0000)
-
-
 class Warehouse(models.Model):
-    # inventory = models.OneToOneField(
-    #     Inventory, on_delete=models.CASCADE, primary_key=True
-    # )
     name = models.CharField(max_length=256, default="Big Warehouse")
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True
@@ -30,13 +17,13 @@ class Warehouse(models.Model):
         default="inches",
         choices=(("feet", "Feet"), ("inches", "Inches")),
     )
-    length = models.IntegerField(default=600)
-    width = models.IntegerField(default=600)
-    height = models.IntegerField(default=120)
-    lane_width_size = models.IntegerField(default=48)
-    shelf_length = models.IntegerField(default=120)
-    shelf_depth = models.IntegerField(default=48)
-    shelf_height = models.IntegerField(default=60)
+    length = models.PositiveIntegerField(default=600)
+    width = models.PositiveIntegerField(default=600)
+    height = models.PositiveIntegerField(default=120)
+    lane_width_size = models.PositiveIntegerField(default=48)
+    shelf_length = models.PositiveIntegerField(default=120)
+    shelf_depth = models.PositiveIntegerField(default=48)
+    shelf_height = models.PositiveIntegerField(default=60)
 
     @property
     def area(self):
@@ -64,31 +51,18 @@ class Warehouse(models.Model):
     def leftover_x_space(self):
         return self.width - (self.x_grid_space * self.shelf_length)
 
-    # @property
-    # def shelves(self):
-    #     num_shelves_back_wall = (self.width//self.shelf_length)*(self.height//self.shelf_height)
-    #     return x_shelves,y_shelves,z_shelves,num_shelves_back_wall
-
-    # grid = ArrayField(
-    #             ArrayField(
-    #                 ArrayField(
-    #                     models.CharField(max_length=256,default=''),
-    #                 ),
-    #             ),
-    #             default=list,
-    # )
-
     def __str__(self):
         return self.name
 
-    # class TestModel(models.Model):
-    # x = models.CharField(max_length=16)
-    # z = models.CharField(max_length=16)
-    # computed = models.CharField(max_length=32, editable=False)
-
-    # def save(self, *args, **kwargs):
-    #     self.computed = self.x + self.y
-    #     super(TestModel, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("warehouse_detail_view", args=[str(self.id)])
+
+class Item(models.Model):
+    warehouse = models.ForeignKey(
+        Warehouse, on_delete=models.CASCADE
+    )
+    item_name = models.CharField(max_length=256, default="")
+    units_in_inventory = models.PositiveIntegerField(default=0)
+    units_sold = models.PositiveIntegerField(default=0)
+    units_recieved = models.PositiveIntegerField(default=0)
