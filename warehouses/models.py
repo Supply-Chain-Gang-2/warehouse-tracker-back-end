@@ -4,14 +4,31 @@ from django.db import models
 from warehouse_utilities.warehouse_constructor import Shelves
 
 
+# class Inventory(models.Model):
+#     item = models.CharField(max_length=256, default="")
+#     month = models.CharField(max_length=3, default="")
+#     sales = models.IntegerField(default=0)
+#     inventory = models.IntegerField(default=0)
+#     orders = models.IntegerField(default=0)
+#     order_size = models.IntegerField(default=0)
+#     turnover = models.FloatField(default=0.0000)
+
+
 class Warehouse(models.Model):
-    name = models.CharField(max_length=256,default='Big Warehouse')
+    # inventory = models.OneToOneField(
+    #     Inventory, on_delete=models.CASCADE, primary_key=True
+    # )
+    name = models.CharField(max_length=256, default="Big Warehouse")
     owner = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True
     )
     description = models.TextField(default="", null=True, blank=True)
 
-    measurement_unit = models.CharField(max_length=20, default='inches', choices=(('feet', 'Feet'), ('inches', 'Inches')))
+    measurement_unit = models.CharField(
+        max_length=20,
+        default="inches",
+        choices=(("feet", "Feet"), ("inches", "Inches")),
+    )
     length = models.IntegerField(default=600)
     width = models.IntegerField(default=600)
     height = models.IntegerField(default=120)
@@ -30,21 +47,21 @@ class Warehouse(models.Model):
 
     @property
     def x_grid_space(self):
-        return (self.width - self.lane_width_size)//(self.shelf_length)
+        return (self.width - self.lane_width_size) // (self.shelf_length)
 
     @property
     def y_grid_space(self):
-        return (self.length - self.shelf_depth - self.lane_width_size)//(self.shelf_depth + self.lane_width_size)
+        return (self.length - self.shelf_depth - self.lane_width_size) // (
+            self.shelf_depth + self.lane_width_size
+        )
 
     @property
     def z_grid_space(self):
-        return (self.height//self.shelf_height)
+        return self.height // self.shelf_height
 
     @property
     def leftover_x_space(self):
-        return self.width-(self.x_grid_space * self.shelf_length)
-
-
+        return self.width - (self.x_grid_space * self.shelf_length)
 
     # @property
     # def shelves(self):
@@ -60,8 +77,6 @@ class Warehouse(models.Model):
     #             default=list,
     # )
 
-
-
     def __str__(self):
         return self.name
 
@@ -73,8 +88,3 @@ class Warehouse(models.Model):
     # def save(self, *args, **kwargs):
     #     self.computed = self.x + self.y
     #     super(TestModel, self).save(*args, **kwargs)
-
-
-
-
-
