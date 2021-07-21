@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<p>Warehouse here!!!!</p>
+<h2>Warehouse: {{ warehouse.name }}</h2>
+<h2>Owner: {{ warehouse.owner }}</h2>
+<h2>Description: {{ warehouse.description }}</h2>
+
+<a href="{% url 'warehouse_update_view' warehouse.pk %}">Update Warehouse</a>
+<a href="{% url 'warehouse_delete_view' warehouse.pk %}">Delete Warehouse</a>
+{% endblock content %}

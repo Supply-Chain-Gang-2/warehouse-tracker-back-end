@@ -13,7 +13,7 @@ class WarehouseListView(ListView):
     model = Warehouse
 
 class WarehouseDetail(DetailView):
-    # template_name = "my_warehouses.html"
+    template_name = "warehouse_detail_view.html"
     model = Warehouse
 
 class WarehouseCreate(CreateView):

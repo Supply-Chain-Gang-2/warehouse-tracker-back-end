@@ -5,8 +5,10 @@
 <p>Warehouse here!!!!</p>
 
 {% for warehouse in object_list %}
+  <ul>
+    <li><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
+  </ul>
 
-  <a href="{% url 'warehouse_detail' warehouse.pk %}">{{ warehouse.name }}</a>
 {% endfor %}
 
 {% endblock content %}
