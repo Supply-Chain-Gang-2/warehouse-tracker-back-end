@@ -13,7 +13,7 @@ class WarehouseDetail(DetailView):
 class WarehouseCreate(CreateView):
     template_name = "warehouse_create_view.html"
     model = Warehouse
-    fields = ["name","owner","description"]
+    fields = ["name","owner","description","length","width","height","lane_width_size","shelf_length","shelf_depth","shelf_height"]
 
 class WarehouseDelete(DeleteView):
     template_name = "warehouse_delete_view.html"
@@ -23,7 +23,7 @@ class WarehouseDelete(DeleteView):
 class WarehouseUpdate(UpdateView):
     template_name = "warehouse_update_view.html"
     model = Warehouse
-    fields = ["name","owner","description"]
+    fields = ["name","owner","description","length","width","height","lane_width_size","shelf_length","shelf_depth","shelf_height"]
 
 # @permission_required('admin.can_add_log_entry')
 # def inventory_upload(request):
