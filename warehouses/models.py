@@ -66,3 +66,6 @@ class Item(models.Model):
     units_in_inventory = models.PositiveIntegerField(default=0)
     units_sold = models.PositiveIntegerField(default=0)
     units_recieved = models.PositiveIntegerField(default=0)
+    
+    def __str__(self):
+        return self.item_name
