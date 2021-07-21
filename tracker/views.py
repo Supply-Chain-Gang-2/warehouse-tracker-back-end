@@ -13,5 +13,5 @@ class SearchPage(TemplateView):
 class ToolInfoPageView(TemplateView):
     template_name = 'tool_info.html'
 
-class MyWarehousesView(TemplateView):
-    template_name = 'my_warehouses.html'
+# class MyWarehousesView(TemplateView):
+#     template_name = 'my_warehouses.html'
