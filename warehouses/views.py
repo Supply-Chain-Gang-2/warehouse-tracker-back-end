@@ -11,14 +11,17 @@ class WarehouseList(ListCreateAPIView):
         user = self.request.user
         queryset = Warehouse.objects.filter(owner=user)
         return queryset
+
     serializer_class = WarehouseSerializer
     model = Warehouse
 
 class WarehouseDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
+
     def get_queryset(self):
         user = self.request.user
         queryset = Warehouse.objects.filter(owner=user)
         return queryset
+
     serializer_class = WarehouseSerializer
     model = Warehouse
