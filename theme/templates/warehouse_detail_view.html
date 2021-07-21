@@ -6,6 +6,7 @@
 <h2>Warehouse: {{ warehouse.name }}</h2>
 <h2>Owner: {{ warehouse.owner }}</h2>
 <h2>Description: {{ warehouse.description }}</h2>
+
 {% if messages %}
   {% for message in messages %}
     <div>
@@ -22,6 +23,7 @@
   <button type='submit'>Upload</button>
 </form>
 {% endif %}
+
 <a href="{% url 'warehouse_update_view' warehouse.pk %}">Update Warehouse</a>
 <a href="{% url 'warehouse_delete_view' warehouse.pk %}">Delete Warehouse</a>
 {% endblock content %}
