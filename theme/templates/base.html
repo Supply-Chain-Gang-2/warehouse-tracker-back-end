@@ -15,22 +15,22 @@
     <title>Warehouse Tracker</title>
   </head>
   <body>
-      <header class="flex justify-around bg-black bg-opacity-25 text-white items-center py-5">
-          <h1 class="text-3xl">Warehouse Tracker</h1>
+      <header class="flex justify-around bg-black bg-opacity-50 text-white items-center py-5">
+          <h1 class="text-5xl font-bold drop-shadow">Warehouse Tracker</h1>
           <nav>
-            <a class="px-2" href="{% url 'home' %}">Home</a>
-            <a class="px-2" href="{% url 'about' %}">About Us</a>
-            <a class="px-2" href="{% url 'tool_info' %}">Tool Info</a>
-            <a class="px-2" href="{% url 'search' %}">Search</a>
-            <a class="px-2" href="{% url 'my_warehouses' %}">My Warehouses</a>
+            <a class="px-2 text-xl" href="{% url 'home' %}">Home</a>
+            <a class="px-2 text-xl" href="{% url 'about' %}">About Us</a>
+            <a class="px-2 text-xl" href="{% url 'tool_info' %}">Tool Info</a>
+            <a class="px-2 text-xl" href="{% url 'search' %}">Search</a>
+            <a class="px-2 text-xl" href="{% url 'my_warehouses' %}">My Warehouses</a>
           </nav>
           {% block login %}
             {% if user.is_authenticated %}
               <h1 class="my-4 items-center">Hi {{ user.username }}!</h1>
-              <a class="bg-blue-200 border-solid p-2 rounded-md" href="{% url 'logout' %}">Log Out</a>
+              <a class="bg-blue-400 border-solid p-2" href="{% url 'logout' %}">Log Out</a>
             {% else %}
               <!-- <p>You are not logged in</p> -->
-              <a class="bg-blue-200 border-solid p-2 rounded-md items-center" href="{% url 'login' %}">Log In</a>
+              <a class="bg-blue-400 border-solid p-2 items-center" href="{% url 'login' %}">Log In</a>
             {% endif %}
           {% endblock login %}
       </header>
@@ -38,7 +38,7 @@
       <p>BASE HTML: Text in block content</p>
       {% endblock content %}
 </body>
-<footer class=" bg-gray-300 bg-opacity-50">
+<footer class="bg-black bg-opacity-40 text-white items-center py-2">
   <nav>
     &copy 2021
     <a class="px-2" href="{% url 'home' %}">Home</a>
