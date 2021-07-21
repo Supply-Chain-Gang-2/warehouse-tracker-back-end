@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block content %}
+<p>Warehouse here!!!!</p>
 
-  {% for warehouse in queryset %}
-    <a href="{% url 'warehouse_list' warehouse.pk %}">{{ warehouse.name }}</a>
-  {% endfor %}
+{% for warehouse in object_list %}
+
+  <a href="{% url 'warehouse_detail' warehouse.pk %}">{{ warehouse.name }}</a>
+{% endfor %}
 
 {% endblock content %}
 

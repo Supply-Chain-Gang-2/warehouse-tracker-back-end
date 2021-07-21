@@ -6,7 +6,6 @@ from .models import Warehouse
 from .permissions import IsOwnerOrReadOnly
 from .serializers import WarehouseSerializer
 
-
 class WarehouseList(ListCreateAPIView):
     def get_queryset(self):
         user = self.request.user
@@ -14,9 +13,7 @@ class WarehouseList(ListCreateAPIView):
         return queryset
 
     serializer_class = WarehouseSerializer
-    template_name = "my_warehouses.html"
     model = Warehouse
-
 
 class WarehouseDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsOwnerOrReadOnly,)
@@ -27,5 +24,4 @@ class WarehouseDetail(RetrieveUpdateDestroyAPIView):
         return queryset
 
     serializer_class = WarehouseSerializer
-    template_name = "my_warehouses.html"
     model = Warehouse
