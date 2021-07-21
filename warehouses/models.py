@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import HStoreField, ArrayField
 from django.db import models
 from warehouse_utilities.warehouse_constructor import Shelves
+from django.urls import reverse
 
 
 # class Inventory(models.Model):
@@ -88,3 +89,6 @@ class Warehouse(models.Model):
     # def save(self, *args, **kwargs):
     #     self.computed = self.x + self.y
     #     super(TestModel, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("warehouse_detail_view", args=[str(self.id)])

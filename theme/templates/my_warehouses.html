@@ -3,10 +3,14 @@
 
 {% block content %}
 <p>Warehouse here!!!!</p>
-
+<button>
+  <a href="{% url 'warehouse_create_view' %}">Create Warehouse</a>
+</button>
 {% for warehouse in object_list %}
+  <ul>
+    <li><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
+  </ul>
 
-  <a href="{% url 'warehouse_detail' warehouse.pk %}">{{ warehouse.name }}</a>
 {% endfor %}
 
 {% endblock content %}
