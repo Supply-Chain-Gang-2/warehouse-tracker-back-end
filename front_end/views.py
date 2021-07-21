@@ -25,3 +25,24 @@ class WarehouseUpdate(UpdateView):
     model = Warehouse
     fields = ["name","owner","description","length","width","height","lane_width_size","shelf_length","shelf_depth","shelf_height"]
 
+# @permission_required('admin.can_add_log_entry')
+# def inventory_upload(request):
+#     template = 'warehouse_detail_view.html'
+#     prompt = {'order': 'Order of the CSV should be item, inventory, sales, recieved'}
+#     if request == 'GET':
+#         return render(request, template, prompt)
+#     csv_file = request.FILES['file']
+#     if not csv_file.name.endswith('.csv'):
+#         messages.error(request, 'This is not a csv file')
+#     data_set = csv_file.read().decode('utf-8')
+#     io_string = io.StringIO(data_set)
+#     next(io_string)
+#     for column in csv.reader(io_string, delimiter=','):
+#         _, created = Inventory.objects.update_or_create(
+#             item=column[0],
+#             inventory=column[1],
+#             sales=column[2],
+#             recieved=column[3],
+#         )
+#     context = {}
+#     return render(request, template, context)
