@@ -2,10 +2,10 @@
 
 {% block content %}
   <!-- <h2>Log In</h2> -->
-    <form class="flex text-white bg-white opacity-80"  method="post">
+    <form class="flex text-white bg-white opacity-90 my-5 pl-8"  method="post">
       {% csrf_token %}
-      <label class="block py-2 mb-2 font-bold text-black text-md">{{ form.as_table }}</label>
-      <button class="px-4 mx-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline" type="submit">
+      <label class="block py-2 my-2 font-bold text-black text-md">{{ form.as_table }}</label>
+      <button class="px-4 mx-4 my-2 items-center p-2 bg-green-400 text-lg border-solid rounded-sm hover:bg-green-500" type="submit">
         Sign In
       </button>
     </form>
@@ -13,7 +13,7 @@
 {% endblock content %}
 
 
-  <button class="p-2 bg-blue-200 border-solid rounded-md" type="submit">Log In</button>
+  <!-- <button class="p-2 bg-blue-200 border-solid rounded-md" type="submit">Log In</button>
 
 <div class="w-full max-w-xs">
   <form class="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md" method="POST">
@@ -40,6 +40,6 @@
       </a>
     </div>
   </form>
-</div>
+</div> -->
 
 
