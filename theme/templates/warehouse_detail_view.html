@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<p>Warehouse here!!!!</p>
+<h2>Warehouse: {{ warehouse.name }}</h2>
+<h2>Owner: {{ warehouse.owner }}</h2>
+<h2>Description: {{ warehouse.description }}</h2>
+
+{% if messages %}
+  {% for message in messages %}
+    <div>
+      <strong>{{message|safe}}</strong>
+    </div>
+  {% endfor %}
+{% else %}
+{{order}}
+<form action="upload/" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <label for='file'>Upload A CSV File</label>
+  <input type="file" name='file'>
+  <input type='number' name='warehouse_id' hidden='true' value='{{warehouse.id}}'>
+  <input type='text' name='warehouse_name' hidden='true' value='{{warehouse.name}}'>
+  <p>Only Accepts CSV Files</p>
+  <button type='submit'>Upload</button>
+</form>
+{% endif %}
+
+<a href="{% url 'warehouse_update_view' warehouse.pk %}">Update Warehouse</a>
+<a href="{% url 'warehouse_delete_view' warehouse.pk %}">Delete Warehouse</a>
+{% endblock content %}

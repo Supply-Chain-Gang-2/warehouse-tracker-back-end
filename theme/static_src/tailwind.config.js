@@ -52,11 +52,7 @@ module.exports = {
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {
-            backgroundImage: theme => ({
-                'warehouse-bg': "url('./static/warehouse-background.jpg')",
-            })
-        },
+        extend: {},
     },
     variants: {
         extend: {},

@@ -1,12 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block content %}
+
+
+<div class="absolute inset-x-0 pt-32 pb-32 bg-white shadow-xl top-64 opacity-80">
+  <div class="flex justify-center">
+    <p class="flex justify-center py-10 text-5xl font-semibold motion-safe:hover:animate-pulse hover:text-green-500">Analyze</p>&nbsp&nbsp&nbsp&nbsp
+    <p class="flex justify-center py-10 text-5xl font-semibold motion-safe:hover:animate-pulse hover:text-red-500">Optimize</p>&nbsp&nbsp&nbsp&nbsp
+    <p class="flex justify-center py-10 text-5xl font-semibold motion-safe:hover:animate-pulse hover:text-blue-500">Organize</p>
+  </div>
+  <p class="flex justify-center pb-8 text-2xl font-semibold">Manage your warehouse or storeroom at the click of a button</p>
+  <button class="flex justify-center p-2 pb-3 mx-auto text-white transform bg-blue-500 border-solid rounded motion-safe:hover:animate-pulse motion-safe:focus:animate-ping" onclick="location.href='/tool_info' ">Start Here</button>
+</div>
+
+
+{% endblock content %}
+
+{% block login %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  <h1 class="items-center my-4">Hi {{ user.username }}!</h1>
+  <a class="items-center p-2 bg-blue-500 border-solid rounded" href="{% url 'logout' %}">Log Out</a>
 {% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In</a>
+  <!-- <p>You are not logged in</p> -->
+  <a class="items-center p-2 bg-blue-500 border-solid rounded" href="{% url 'login' %}">Log In</a>
 {% endif %}
-{% endblock %}
+{% endblock login %}

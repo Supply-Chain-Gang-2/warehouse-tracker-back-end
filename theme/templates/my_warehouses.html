@@ -2,12 +2,19 @@
 {% load static %}
 
 {% block content %}
-<p>Warehouse here!!!!</p>
+<div class="pb-5 bg-white shadow-inner opacity-80">
+  <h2 class="flex justify-center py-10 pb-2 text-4xl font-extrabold underline">My Warehouses</h2>
 
-{% for warehouse in object_list %}
+  {% for warehouse in object_list %}
+    <ul class="flex justify-center text-2xl italic font-bold">
+      <li class="rounded motion-safe:hover:animate-bounce"><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
+    </ul>
 
-  <a href="{% url 'warehouse_detail' warehouse.pk %}">{{ warehouse.name }}</a>
-{% endfor %}
+  {% endfor %}
+  <button class="flex justify-center p-2 pb-3 mx-auto mt-10 text-white transform bg-blue-500 border-solid rounded motion-safe:hover:animate-pulse">
+    <a href="{% url 'warehouse_create_view' %}">Build a Warehouse</a>
+  </button>
+</div>
 
 {% endblock content %}
 
