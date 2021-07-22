@@ -25,7 +25,7 @@
           </nav>
           {% block login %}
             {% if user.is_authenticated %}
-              <h1 class="items-center my-4">Hi {{ user.username }}!</h1>
+              <h1 class="items-center my-4 text-2xl">Hi {{ user.username }}!</h1>
               <a class="items-center px-3 py-2 bg-green-400 hover:bg-green-500 text-lg border-solid rounded-sm" href="{% url 'logout' %}">Log Out</a>
             {% else %}
               <!-- <p>You are not logged in</p> -->
