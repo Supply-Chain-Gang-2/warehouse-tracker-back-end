@@ -25,7 +25,7 @@
     <input type='number' name='warehouse_id' hidden='true' value='{{warehouse.id}}'>
     <input type='text' name='warehouse_name' hidden='true' value='{{warehouse.name}}'>
     <p>Only Accepts CSV Files</p>
-    <button class="flex justify-center p-3 px-5 pb-3 mx-auto mt-10 text-black text-lg transform bg-green-500 border-solid rounded motion-safe:hover:animate-pulse" type='submit'>Upload</button>
+    <button class="flex justify-center p-3 px-5 pb-3 mx-auto mt-10 text-white text-lg transform bg-green-500 border-solid rounded motion-safe:hover:animate-pulse" type='submit'>Upload</button>
   </form>
   <div class="text-center py-4">
     <a class="px-4 mx-4 my-2 items-center p-2 bg-green-500 text-lg text-white border-solid rounded hover:bg-green-600" href="{% url 'warehouse_update_view' warehouse.pk %}">Update Warehouse</a>
