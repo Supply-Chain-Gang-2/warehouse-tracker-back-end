@@ -2,18 +2,24 @@
 {% load static %}
 
 {% block content %}
-<div class="py-36 bg-white shadow-inner opacity-90">
-  <h2 class="flex justify-center my-10 py-10 pb-2 text-5xl font-bold">My Warehouses</h2>
+<div class="pb-5 bg-white shadow-inner opacity-80">
+  
+  {% if user.id %}
+    <h2 class="flex justify-center py-10 pb-2 text-4xl font-extrabold underline">My Warehouses</h2>
+    {% for warehouse in object_list %}
+      {% if user.id == warehouse.id %}
+      <ul class="flex justify-center text-2xl italic font-bold">
+        <li class="rounded motion-safe:hover:animate-bounce"><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
+      </ul>
+      {% endif %}
+    {% endfor %}
+    <button class="flex justify-center p-2 pb-3 mx-auto mt-10 text-white transform bg-blue-500 border-solid rounded motion-safe:hover:animate-pulse">
+      <a href="{% url 'warehouse_create_view' %}">Build a Warehouse</a>
+    </button>
+  {% else %}
+      <h1 class="flex justify-center py-10 pb-2 text-4xl font-extrabold underline">looks like youre not logged in! need to make an account? <a href="register/">Click Here</a></h1>
+  {% endif %}
 
-  {% for warehouse in object_list %}
-    <ul class="flex justify-center text-2xl italic font-bold">
-      <li class="rounded motion-safe:hover:animate-bounce hover:text-green-400 py-2"><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
-    </ul>
-  {% endfor %}
-
-  <button class="flex justify-center p-2 pb-3 mx-auto mt-10 text-white transform bg-green-500 border-solid rounded motion-safe:hover:animate-pulse">
-    <a href="{% url 'warehouse_create_view' %}">Build a Warehouse</a>
-  </button>
 </div>
 
 {% endblock content %}

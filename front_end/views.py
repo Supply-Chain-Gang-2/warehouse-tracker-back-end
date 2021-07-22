@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
+from accounts.forms import CustomUserCreationForm
 
 class WarehouseListView(ListView):
     template_name = "my_warehouses.html"
@@ -13,6 +14,11 @@ class WarehouseListView(ListView):
 class WarehouseDetail(DetailView):
     template_name = "warehouse_detail_view.html"
     model = Warehouse
+    def get_context_data(self, **kwargs):
+        context = super(WarehouseDetail, self).get_context_data(**kwargs)
+        context['warehouse'] = Warehouse.objects.all()
+        context['item'] = Item.objects.all()
+        return context
 
 class WarehouseCreate(CreateView):
     template_name = "warehouse_create_view.html"
@@ -29,7 +35,7 @@ class WarehouseUpdate(UpdateView):
     model = Warehouse
     fields = ["name","owner","description","length","width","height","lane_width_size","shelf_length","shelf_depth","shelf_height"]
 
-@permission_required('admin.can_add_log_entry')
+# @permission_required('admin.can_add_log_entry')
 def inventory_upload(request, **kwargs):
     csv_file = request.FILES['file']
     warehouse_id = request.POST.get('warehouse_id')
@@ -51,3 +57,17 @@ def inventory_upload(request, **kwargs):
         )
     context = {}
     return redirect('warehouse_detail_view', pk=warehouse_id)
+
+def register(request):
+    if request.method == 'POST':
+        f = CustomUserCreationForm(request.POST)
+        if f.is_valid():
+            f.save()
+            messages.success(request, 'Account created successfully')
+            return redirect('my_warehouses')
+
+    else:
+        f = CustomUserCreationForm()
+
+    return render(request, 'register.html', {'form': f})
+
