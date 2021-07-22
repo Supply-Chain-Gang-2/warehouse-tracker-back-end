@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-    background-image: url('warehouse_background_test.png');
+    background-image: url('warehouse_background.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
