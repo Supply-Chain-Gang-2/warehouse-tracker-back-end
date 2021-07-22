@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Create new Warehouse!</h2>
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit"value="Save">
-</form>
+<div class="inset-x-0 pt-32 pb-32 bg-white shadow-xl top-64 opacity-90">
+  <h2 class="text-3xl font-semibold ml-36">Create new Warehouse!</h2>
+  <div class="ml-20">
+    <form class="mt-8" action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="items-center mt-5 px-3 py-2 bg-green-400 hover:bg-green-500 text-lg text-white border-solid rounded" type="submit"value="Save">
+    </form>
+  </div>
+</div>
 {% endblock content %}

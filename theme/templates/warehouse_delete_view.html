@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Delete warehouse</h2>
-
-<form action=""method="POST">
-    {% csrf_token %}
-    <p>Are you sure you want to delete "{{ warehouse.name }}"?</p>
-    <input type="submit" value="Yes">
-</form>
+<div class="inset-x-0 pt-32 pb-32 bg-white shadow-xl top-64 opacity-90">
+  <h2 class="text-3xl text-center py-2 font-semibold">Delete warehouse</h2>
+  <form class="flex flex-col justify-center items-center text-lg" action=""method="POST">
+      {% csrf_token %}
+      <p class="text-lg pt-3">Are you sure you want to delete "{{ warehouse.name }}"?</p>
+      <input class="items-center mt-5 px-3 py-2 bg-green-400 hover:bg-green-500 text-lg text-white border-solid rounded" type="submit" value="Yes">
+  </form>
+</div>
 {% endblock content %}
