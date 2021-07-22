@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<div class="py-36 bg-white shadow-inner opacity-90">
-  <h2 class="flex justify-center my-10 py-10 pb-2 text-5xl font-bold">My Warehouses</h2>
+<div class="bg-white shadow-inner opacity-90 pt-16 pb-32">
+  <h2 class="flex justify-center my-8 py-10 pb-2 text-5xl font-bold">My Warehouses</h2>
 
   {% for warehouse in object_list %}
     <ul class="flex justify-center text-2xl italic font-bold">
-      <li class="rounded motion-safe:hover:animate-bounce hover:text-green-400 py-2"><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
+      <li class="rounded motion-safe:hover:animate-bounce hover:text-green-400 py-4"><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
     </ul>
   {% endfor %}
 
