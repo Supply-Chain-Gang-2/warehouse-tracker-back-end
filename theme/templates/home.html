@@ -1,12 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
+{% block content %}
+
+
+<div class="absolute inset-x-0 pb-5 bg-white shadow-inner top-80 opacity-80">
+
+  <h1 class="flex justify-center py-10 text-4xl font-semibold">Analyze, Optimize, Organize</h1>
+  <p class="flex justify-center pb-8 text-2xl font-semibold">Manage your storeroom or warehouse at the click of a button</p>
+  <button class="flex justify-center p-2 pb-3 mx-auto text-white transform bg-blue-500 border-solid rounded motion-safe:hover:animate-pulse" onclick="location.href='/tool_info' ">Start Here</button>
+</div>
+
+
+{% endblock content %}
 
 {% block login %}
 {% if user.is_authenticated %}
-  <h1 class="my-4 items-center">Hi {{ user.username }}!</h1>
-  <a class="bg-blue-500 border-solid p-2 rounded" href="{% url 'logout' %}">Log Out</a>
+  <h1 class="items-center my-4">Hi {{ user.username }}!</h1>
+  <a class="items-center p-2 bg-blue-500 border-solid rounded" href="{% url 'logout' %}">Log Out</a>
 {% else %}
   <!-- <p>You are not logged in</p> -->
-  <a class="bg-blue-500 border-solid p-2 items-center rounded" href="{% url 'login' %}">Log In</a>
+  <a class="items-center p-2 bg-blue-500 border-solid rounded" href="{% url 'login' %}">Log In</a>
 {% endif %}
 {% endblock login %}

@@ -2,16 +2,19 @@
 {% load static %}
 
 {% block content %}
-<h2>My Warehouses</h2>
-<button>
-  <a href="{% url 'warehouse_create_view' %}">Create Warehouse</a>
-</button>
-{% for warehouse in object_list %}
-  <ul>
-    <li><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
-  </ul>
+<div class="pb-5 bg-white shadow-inner opacity-80">
+  <h2 class="flex justify-center py-10 pb-2 text-4xl font-semibold underline">My Warehouses</h2>
 
-{% endfor %}
+  {% for warehouse in object_list %}
+    <ul class="flex justify-center pb-10 text-2xl italic font-bold">
+      <li class="hover:bg-red-200"><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
+    </ul>
+
+  {% endfor %}
+  <button class="flex justify-center p-2 pb-3 mx-auto text-white transform bg-blue-500 border-solid rounded motion-safe:hover:animate-pulse">
+    <a href="{% url 'warehouse_create_view' %}">Create Warehouse</a>
+  </button>
+</div>
 
 {% endblock content %}
 
