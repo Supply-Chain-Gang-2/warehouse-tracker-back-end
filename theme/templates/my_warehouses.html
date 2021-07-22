@@ -7,13 +7,13 @@
   {% if user.id %}
     <h2 class="flex justify-center py-10 pb-2 text-4xl font-extrabold underline">My Warehouses</h2>
     {% for warehouse in object_list %}
-      {% if user.id == warehouse.id %}
+      {% if user == warehouse.owner %}
       <ul class="flex justify-center text-2xl italic font-bold">
         <li class="rounded motion-safe:hover:animate-bounce"><a href="{% url 'warehouse_detail_view' warehouse.pk %}">{{ warehouse.name }}</a></li>
       </ul>
       {% endif %}
     {% endfor %}
-    <button class="flex justify-center p-3 px-5 pb-3 mx-auto mt-10 text-white text-lg transform bg-green-500 border-solid rounded motion-safe:hover:animate-pulse">
+    <button class="flex justify-center p-3 px-5 pb-3 mx-auto mt-10 text-lg text-white transform bg-green-500 border-solid rounded motion-safe:hover:animate-pulse">
       <a href="{% url 'warehouse_create_view' %}">Build a Warehouse</a>
     </button>
   {% else %}
