@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="inset-x-0 pt-32 pb-32 bg-white shadow-xl top-64 opacity-90">
+  <h2 class="text-3xl font-semibold ml-12">Sign up</h2>
+  <div class="ml-20">
+    <form class="mt-8" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="items-center mt-5 px-3 py-2 bg-green-400 hover:bg-green-500 text-lg text-white border-solid rounded" type="submit">Sign up</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
