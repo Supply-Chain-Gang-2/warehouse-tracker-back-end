@@ -31,16 +31,10 @@ class WarehouseUpdate(UpdateView):
 
 @permission_required('admin.can_add_log_entry')
 def inventory_upload(request, **kwargs):
-    template = 'warehouse_detail_view.html'
-    prompt = {'order': 'Order of the CSV should be item_name, units_in_inventory, units_sold, units_recieved'}
-    if request == 'GET':
-        return render(request, template, prompt)
-    
     csv_file = request.FILES['file']
     warehouse_id = request.POST.get('warehouse_id')
     warehouse_name = request.POST.get('warehouse_name')
-    # print(warehouse_name, '----------------------------------------------------------------------------LOOK HERE TOO --------------------')
-    my_var = get_object_or_404(Warehouse, pk=warehouse_id)
+    my_var = Warehouse.objects.get(name=warehouse_name)
     print(my_var, '--------------HELLO-------------------')
     if not csv_file.name.endswith('.csv'):
         messages.error(request, 'This is not a csv file')
@@ -49,11 +43,11 @@ def inventory_upload(request, **kwargs):
     next(io_string)
     for column in csv.reader(io_string, delimiter=','):
         _, created = Item.objects.update_or_create(
-            # warehouse=warehouse_id,
+            warehouse=my_var,
             item_name=column[0],
             units_in_inventory=column[1],
             units_sold=column[2],
             units_recieved=column[3],
         )
     context = {}
-    return render(request, template, context)
+    return redirect('warehouse_detail_view', pk=warehouse_id)
