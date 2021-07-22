@@ -3,14 +3,14 @@
 {% block content %}
 
 
-<div class="absolute inset-x-0 pt-32 pb-32 bg-white shadow-xl top-64 opacity-80">
+<div class="absolute inset-x-0 pt-32 pb-32 bg-white shadow-xl top-64 opacity-90">
   <div class="flex justify-center">
-    <p class="flex justify-center py-10 text-5xl font-semibold motion-safe:hover:animate-pulse hover:text-green-500">Analyze</p>&nbsp&nbsp&nbsp&nbsp
-    <p class="flex justify-center py-10 text-5xl font-semibold motion-safe:hover:animate-pulse hover:text-red-500">Optimize</p>&nbsp&nbsp&nbsp&nbsp
-    <p class="flex justify-center py-10 text-5xl font-semibold motion-safe:hover:animate-pulse hover:text-blue-500">Organize</p>
+    <p class="flex justify-center py-10 text-6xl font-semibold motion-safe:hover:animate-pulse hover:text-blue-600">Analyze</p>&nbsp&nbsp&nbsp&nbsp
+    <p class="flex justify-center py-10 text-6xl font-semibold motion-safe:hover:animate-pulse hover:text-red-600">Optimize</p>&nbsp&nbsp&nbsp&nbsp
+    <p class="flex justify-center py-10 text-6xl font-semibold motion-safe:hover:animate-pulse hover:text-green-700">Organize</p>
   </div>
   <p class="flex justify-center pb-8 text-2xl font-semibold">Manage your warehouse or storeroom at the click of a button</p>
-  <button class="flex justify-center p-2 pb-3 mx-auto text-white transform bg-blue-500 border-solid rounded motion-safe:hover:animate-pulse motion-safe:focus:animate-ping" onclick="location.href='/tool_info' ">Start Here</button>
+  <button class="flex justify-center p-4 pb-3 mx-auto text-white text-xl rounded-sm font-bold transform bg-green-500 border-solid motion-safe:hover:animate-pulse motion-safe:focus:animate-ping" onclick="location.href='/tool_info' ">Start Here</button>
 </div>
 
 
@@ -18,10 +18,10 @@
 
 {% block login %}
 {% if user.is_authenticated %}
-  <h1 class="items-center my-4">Hi {{ user.username }}!</h1>
-  <a class="items-center p-2 bg-blue-500 border-solid rounded" href="{% url 'logout' %}">Log Out</a>
+  <h1 class="items-center my-4 text-xl text-white">Hi {{ user.username }}!</h1>
+  <a class="items-center px-3 py-2 bg-green-400 hover:bg-green-500 text-lg border-solid rounded-sm" href="{% url 'logout' %}">Log Out</a>
 {% else %}
   <!-- <p>You are not logged in</p> -->
-  <a class="items-center p-2 bg-blue-500 border-solid rounded" href="{% url 'login' %}">Log In</a>
+  <a class="items-center px-3 py-2 bg-green-400 hover:bg-green-500 text-lg border-solid rounded-sm" href="{% url 'login' %}">Log In</a>
 {% endif %}
 {% endblock login %}
