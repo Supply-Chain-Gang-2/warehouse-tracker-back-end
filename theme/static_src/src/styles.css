@@ -8,4 +8,7 @@ html {
     background-repeat: no-repeat;
     height: 100%;
     font-family: 'Manrope', sans-serif;
+    background-attachment: fixed;
+    background-position: left top;
+    position: absolute;
 }
