@@ -1,3 +1,9 @@
+# Welcome to Warehouse Tracker
+### The web app for businesses of any size
+
+## Enter the dimensions of your warehouse and fill your inventory with our easy to use CSV file upload.
+
+
 # api-quick-start
 
 Template Project for starting up CRUD API with Django Rest Framework
